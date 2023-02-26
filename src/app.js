@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import router from './routes/userRoutes.js';
+import * as routes from './routes/index.js';
 
 dotenv.config();
 
@@ -19,5 +19,6 @@ mongoose.connect(process.env.MONGODB_CONNECTION)
   .catch((err) => console.log(err));
 
 // routes
-app.use(router);
+app.use(routes.userRoutes);
+app.use(routes.invitationRoutes);
 

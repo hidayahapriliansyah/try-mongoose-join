@@ -1,7 +1,16 @@
 import User from '../models/User.js';
 
-const user_get = (req, res) => {
-  res.send('User get');
+const user_get = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      status: 'ok',
+      message: 'Get all users',
+      data: users,
+    });
+  } catch (err){
+    console.log(err);
+  };
 };
 
 const user_post = async (req, res) => {
@@ -18,7 +27,7 @@ const user_post = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-  }
+  };
 };
 
 export {
